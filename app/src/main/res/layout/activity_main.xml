@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+        <!-- Gender Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp">
+
+                <ImageButton
+                    android:id="@+id/female"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/female"
+                    android:contentDescription="@string/female_button"
+                    android:scaleType="centerInside"
+                    android:background="@drawable/border"
+                    android:padding="10dp"/>
+
+                <ImageView
+                    android:id="@+id/femaleselect"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/select"
+                    android:visibility="gone"
+                    android:layout_gravity="top|end"/>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/male"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/male"
+                    android:contentDescription="@string/male_button"
+                    android:scaleType="centerInside"
+                    android:background="@drawable/border"
+                    android:padding="10dp"/>
+
+                <ImageView
+                    android:id="@+id/maleselect"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/select"
+                    android:visibility="gone"
+                    android:layout_gravity="top|end"/>
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- Age Title -->
+        <TextView
+            android:id="@+id/txtage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/age"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:background="@drawable/border"
+            android:backgroundTint="#3F51B5"
+            android:padding="10dp"
+            android:layout_marginTop="24dp"/>
+
+        <!-- Age RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/agerecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"/>
+
+        <!-- Weight Title -->
+        <TextView
+            android:id="@+id/txtweight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weight"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:background="@drawable/border"
+            android:backgroundTint="#3F51B5"
+            android:padding="10dp"
+            android:layout_marginTop="24dp"
+            android:textAlignment="center"/>
+
+        <!-- KG / Pounds Buttons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KG"
+                android:backgroundTint="#3F51B5"
+                android:layout_marginEnd="24dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pounds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pounds"
+                android:backgroundTint="#3F51B5"/>
+        </LinearLayout>
+
+        <!-- Weight RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weightrecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"/>
+
+        <!-- Selected Age / Weight Display -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/agell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age : "
+                    android:textStyle="bold"
+                    android:textColor="#B8B6B6"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/agecounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_20"
+                    android:textStyle="bold"
+                    android:textColor="#B8B6B6"
+                    android:textSize="20sp"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/weightll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weight : "
+                    android:textStyle="bold"
+                    android:textColor="#B8B6B6"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/weightcounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_49"
+                    android:textStyle="bold"
+                    android:textColor="#B8B6B6"
+                    android:textSize="20sp"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- NEXT Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextheight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#2196F3"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"/>
+    </LinearLayout>
+</ScrollView>
