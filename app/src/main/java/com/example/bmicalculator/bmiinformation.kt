@@ -3,11 +3,13 @@ package com.example.bmicalculator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
 
 class bmiinformation : AppCompatActivity() {
     private var f = 0
@@ -43,7 +45,7 @@ class bmiinformation : AppCompatActivity() {
         // Lottie animation
         val lottieAnimation = findViewById<LottieAnimationView>(R.id.lottieAnimation)
         lottieAnimation.playAnimation()
-        lottieAnimation.loop(true)
+        lottieAnimation.repeatCount = LottieDrawable.INFINITE
 
         // TextViews
         age = findViewById(R.id.age)
@@ -82,7 +84,7 @@ class bmiinformation : AppCompatActivity() {
         weightcard.startAnimation(righttoleft)
 
         // Move to bmiresult after 4 seconds
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             val intent1 = Intent(this, bmiresult::class.java)
             intent1.putExtra("selected1", selected1)
             intent1.putExtra("selectedAge", selectedAge)
@@ -93,6 +95,7 @@ class bmiinformation : AppCompatActivity() {
             intent1.putExtra("inch", inch)
             intent1.putExtra("feet", feet)
             startActivity(intent1)
+            @Suppress("DEPRECATION")
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             f = 1
             finish()
@@ -103,6 +106,7 @@ class bmiinformation : AppCompatActivity() {
         super.finish()
         if (f == 0) {
             // If the user leaves activity before Handler triggers, use reverse slide animation
+            @Suppress("DEPRECATION")
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
     }

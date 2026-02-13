@@ -14,6 +14,8 @@
         android:padding="16dp"
         android:gravity="center_horizontal">
 
+
+
         <!-- Gender Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -94,6 +96,8 @@
             android:orientation="horizontal"
             android:overScrollMode="never"/>
 
+
+
         <!-- Weight Title -->
         <TextView
             android:id="@+id/txtweight"
@@ -142,6 +146,7 @@
             android:orientation="horizontal"
             android:overScrollMode="never"/>
 
+
         <!-- Selected Age / Weight Display -->
         <LinearLayout
             android:layout_width="wrap_content"
@@ -149,6 +154,7 @@
             android:orientation="vertical"
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal">
+
 
             <LinearLayout
                 android:id="@+id/agell"
@@ -164,6 +170,7 @@
                     android:textStyle="bold"
                     android:textColor="#B8B6B6"
                     android:textSize="20sp"/>
+
 
                 <TextView
                     android:id="@+id/agecounter"
@@ -183,6 +190,7 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 android:layout_marginTop="12dp">
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -216,5 +224,16 @@
             android:textSize="20sp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Logout"
+            android:textSize="12sp"
+            android:backgroundTint="#FF6B6B"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+
     </LinearLayout>
 </ScrollView>
