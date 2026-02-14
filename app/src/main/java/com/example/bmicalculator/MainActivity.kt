@@ -16,10 +16,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.toColorInt
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bmicalculator.auth.WeightHistory
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     var selected1: String? = null
@@ -30,12 +33,14 @@ class MainActivity : AppCompatActivity() {
     var genderselect: String = ""
     var agecounter: TextView? = null
     var weightcounter: TextView? = null
+    
+    private lateinit var authManager: AuthManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val authManager = AuthManager(this)
+        authManager = AuthManager(this)
 
         val btnLogout: Button = findViewById(R.id.btnLogout)
         btnLogout.setOnClickListener {
@@ -44,6 +49,11 @@ class MainActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
+        }
+
+        // Add Profile Switching button to title or menu
+        findViewById<View>(R.id.btnSwitchProfile).setOnClickListener {
+            startActivity(Intent(this, UserSelectionActivity::class.java))
         }
 
         val agerecyclerview = findViewById<RecyclerView>(R.id.agerecyclerview)
@@ -55,28 +65,23 @@ class MainActivity : AppCompatActivity() {
         agerecyclerview.layoutManager = layoutManager
         weightrecyclerview.layoutManager = layoutManager1
 
-        // Add SnapHelper to center items
         LinearSnapHelper().attachToRecyclerView(agerecyclerview)
         LinearSnapHelper().attachToRecyclerView(weightrecyclerview)
 
-        // Initialize lists starting from 1
         for (i in 1..149) ageList.add(i)
         for (i in 1..199) weightList.add(i)
 
-        // Setup adapters
         val ageRCadapter = ageRCadapter(ageList)
         val weightRCadapter = ageRCadapter(weightList)
 
         agerecyclerview.adapter = ageRCadapter
         weightrecyclerview.adapter = weightRCadapter
 
-        // Scroll to first element
         Handler(Looper.getMainLooper()).postDelayed({
             agerecyclerview.scrollToPosition(0)
             weightrecyclerview.scrollToPosition(0)
         }, 300)
 
-        // RecyclerView scroll listeners
         agerecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -95,7 +100,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // Gender selection
         val male: ImageButton = findViewById(R.id.male)
         val female: ImageButton = findViewById(R.id.female)
         val maleselect: ImageView = findViewById(R.id.maleselect)
@@ -115,7 +119,6 @@ class MainActivity : AppCompatActivity() {
             genderselect = "female"
         }
 
-        // KG / Pounds selection
         val kg = findViewById<MaterialButton>(R.id.kg)
         val pounds = findViewById<MaterialButton>(R.id.pounds)
 
@@ -123,37 +126,40 @@ class MainActivity : AppCompatActivity() {
             selected1 = "KG"
             kg.setBackgroundColor(Color.BLACK)
             pounds.setBackgroundColor("#3F51B5".toColorInt())
+            updateWeightDisplay()
         }
 
         pounds.setOnClickListener {
             selected1 = "Pounds"
             pounds.setBackgroundColor(Color.BLACK)
             kg.setBackgroundColor("#3F51B5".toColorInt())
+            updateWeightDisplay()
         }
 
-        // Counters
         agecounter = findViewById(R.id.agecounter)
         weightcounter = findViewById(R.id.weightcounter)
 
-        // Item click listeners
         ageRCadapter.setOnItemClickListener(object : ageRCadapter.OnItemClickListener {
             override fun onItemClick(position: Int, age: Int) {
                 selectedAge = ageList[position]
-                agecounter?.text = selectedAge.toString()
+                agecounter?.text = "Age: $selectedAge"
             }
         })
 
         weightRCadapter.setOnItemClickListener(object : ageRCadapter.OnItemClickListener {
             override fun onItemClick(position: Int, age: Int) {
                 selectedWeight = weightList[position]
-                weightcounter?.text = selectedWeight.toString()
+                updateWeightDisplay()
             }
         })
 
-        // NEXT button
         val nextheight = findViewById<MaterialButton>(R.id.nextheight)
         nextheight.setOnClickListener {
             if (selected1 != null && selectedAge != null && selectedWeight != null && genderselect.isNotEmpty()) {
+                
+                // Save Weight to History
+                saveWeightToHistory()
+
                 val intent = Intent(this, heightselect::class.java)
                 intent.putExtra("selected1", selected1)
                 intent.putExtra("selectedAge", selectedAge.toString())
@@ -164,6 +170,28 @@ class MainActivity : AppCompatActivity() {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
             } else {
                 Toast.makeText(this, "Check All The Fields", Toast.LENGTH_SHORT).show()
+            }
+        }
+        
+        // Load Graph Button
+        findViewById<View>(R.id.btnShowHistory).setOnClickListener {
+             startActivity(Intent(this, WeightHistoryActivity::class.java))
+        }
+    }
+
+    private fun updateWeightDisplay() {
+        val unit = if (selected1 == "KG") "KG" else "Pounds"
+        weightcounter?.text = "Weight: ${selectedWeight ?: ""} $unit"
+    }
+
+    private fun saveWeightToHistory() {
+        val currentEmail = authManager.getLoggedInEmail()
+        val weight = selectedWeight?.toFloat() ?: return
+        
+        lifecycleScope.launch {
+            val user = authManager.db.getUserByEmail(currentEmail)
+            if (user != null) {
+                authManager.db.insertWeight(WeightHistory(userId = user.id, weightKg = weight))
             }
         }
     }
@@ -189,7 +217,7 @@ class MainActivity : AppCompatActivity() {
             closestPosition = layoutManager.getPosition(closestChild)
             if (closestPosition in 0 until adapter.itemCount) {
                 selectedAge = ageList[closestPosition]
-                agecounter?.text = selectedAge.toString()
+                agecounter?.text = "Age: $selectedAge"
                 adapter.setSelectedItem(closestPosition)
             }
         }
@@ -217,7 +245,7 @@ class MainActivity : AppCompatActivity() {
             closestPosition = layoutManager.getPosition(closestChild)
             if (closestPosition in 0 until adapter.itemCount) {
                 selectedWeight = weightList[closestPosition]
-                weightcounter?.text = selectedWeight.toString()
+                updateWeightDisplay()
                 adapter.setSelectedItem(closestPosition)
             }
         }

@@ -5,7 +5,7 @@
     android:layout_height="80dp"
     android:gravity="center"
     android:text="20"
-    android:textColor="@android:color/white"
+    android:textColor="@android:color/black"
     android:textSize="20sp"
     android:textStyle="bold"
     android:background="@android:color/transparent" />

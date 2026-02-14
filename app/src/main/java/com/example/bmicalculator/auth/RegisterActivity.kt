@@ -88,6 +88,7 @@ class RegisterActivity : AppCompatActivity() {
                     showLoading(false)
                     if (id > 0) {
                         Toast.makeText(this@RegisterActivity, "Registration Successful!", Toast.LENGTH_SHORT).show()
+                        // Ensure it goes to selection or login
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java).apply {
                             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         })

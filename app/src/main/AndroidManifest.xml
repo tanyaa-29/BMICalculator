@@ -24,6 +24,8 @@
         <activity android:name=".heightselect" android:exported="false" />
         <activity android:name=".bmiinformation" android:exported="false" />
         <activity android:name=".bmiresult" android:exported="false" />
+        <activity android:name=".UserSelectionActivity" android:exported="false" />
+        <activity android:name=".WeightHistoryActivity" android:exported="false" />
 
     </application>
 

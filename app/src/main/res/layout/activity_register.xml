@@ -1,11 +1,18 @@
 <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#121212" android:fillViewport="true">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
         android:padding="32dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -15,39 +22,174 @@
             android:textColor="@color/black"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"/>
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:text="Fill in your details below" android:textColor="#888888" android:layout_marginBottom="32dp"/>
-        <!--  Full Name  -->
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Full Name" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="#444444" app:hintTextColor="#AAAAAA" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etName" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPersonName" android:textColor="#FFFFFF" android:imeOptions="actionNext"/>
+            android:layout_height="wrap_content"
+            android:text="Fill in your details below"
+            android:textColor="#888888"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Full Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="#444444"
+            app:hintTextColor="#AAAAAA"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:imeOptions="actionNext"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--  Email  -->
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Email address" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="#444444" app:hintTextColor="#AAAAAA" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEmail" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textEmailAddress" android:textColor="#FFFFFF" android:imeOptions="actionNext"/>
+
+        <!-- Email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email address"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="#444444"
+            app:hintTextColor="#AAAAAA"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:imeOptions="actionNext"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--  Password  -->
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Password (min 6 chars + 1 number)" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="#444444" app:hintTextColor="#AAAAAA" app:endIconMode="password_toggle" android:layout_marginBottom="16dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etPassword" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPassword" android:textColor="#FFFFFF" android:imeOptions="actionNext"/>
+
+        <!-- Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password (min 6 chars + 1 number)"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="#444444"
+            app:hintTextColor="#AAAAAA"
+            app:endIconMode="password_toggle"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:imeOptions="actionNext"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--  Confirm Password  -->
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Confirm Password" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="#444444" app:hintTextColor="#AAAAAA" app:endIconMode="password_toggle" android:layout_marginBottom="24dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etConfirmPassword" android:layout_width="match_parent" android:layout_height="wrap_content" android:inputType="textPassword" android:textColor="#FFFFFF" android:imeOptions="actionNext"/>
+
+        <!-- Confirm Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="#444444"
+            app:hintTextColor="#AAAAAA"
+            app:endIconMode="password_toggle"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:imeOptions="actionNext"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--  Secret Question section  -->
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Security Question (for password reset)" android:textColor="#AAAAAA" android:textSize="13sp" android:layout_marginBottom="8dp"/>
-        <Spinner android:id="@+id/spinnerQuestion" android:layout_width="match_parent" android:layout_height="52dp" android:background="@drawable/spinner_bg" android:paddingStart="12dp" android:paddingEnd="12dp" android:layout_marginBottom="16dp"/>
-        <!--  Secret Answer  -->
-        <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Your Answer" style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="#444444" app:hintTextColor="#AAAAAA" android:layout_marginBottom="32dp">
-            <com.google.android.material.textfield.TextInputEditText android:id="@+id/etSecretAnswer" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#FFFFFF" android:imeOptions="actionDone"/>
+
+        <!-- Security Question -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Security Question (for password reset)"
+            android:textColor="#AAAAAA"
+            android:textSize="13sp"
+            android:layout_marginBottom="8dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@drawable/spinner_bg"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Secret Answer -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your Answer"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="#444444"
+            app:hintTextColor="#AAAAAA"
+            android:layout_marginBottom="32dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSecretAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:imeOptions="actionDone"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <!--  Register button  -->
-        <Button android:id="@+id/btnRegister" android:layout_width="match_parent" android:layout_height="56dp" android:text="CREATE ACCOUNT" android:textSize="16sp" android:textStyle="bold" android:backgroundTint="#FF6B6B" android:layout_marginBottom="24dp"/>
-        <!--  Already have account  -->
-        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:orientation="horizontal">
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Already have an account? " android:textColor="#888888"/>
-            <TextView android:id="@+id/tvLogin" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Login" android:textColor="#FF6B6B" android:textStyle="bold"/>
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="CREATE ACCOUNT"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:backgroundTint="#FF6B6B"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Already have account -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account? "
+                android:textColor="#888888"/>
+
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textColor="#FF6B6B"
+                android:textStyle="bold"/>
         </LinearLayout>
-        <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:indeterminateTint="#FF6B6B" android:visibility="gone" android:layout_marginTop="16dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="#FF6B6B"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
     </LinearLayout>
 </ScrollView>

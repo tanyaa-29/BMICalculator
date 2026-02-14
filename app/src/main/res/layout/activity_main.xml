@@ -14,7 +14,32 @@
         android:padding="16dp"
         android:gravity="center_horizontal">
 
+        <!-- Top Bar for Multi-User and History -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
+            <ImageButton
+                android:id="@+id/btnSwitchProfile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_menu_myplaces"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Switch Profile"
+                android:tint="@android:color/white"
+                android:layout_alignParentStart="true"/>
+
+            <ImageButton
+                android:id="@+id/btnShowHistory"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@android:drawable/ic_menu_recent_history"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Weight History"
+                android:tint="@android:color/white"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
 
         <!-- Gender Buttons -->
         <LinearLayout
@@ -22,7 +47,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -34,7 +59,6 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/female"
-                    android:contentDescription="@string/female_button"
                     android:scaleType="centerInside"
                     android:background="@drawable/border"
                     android:padding="10dp"/>
@@ -57,7 +81,6 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/male"
-                    android:contentDescription="@string/male_button"
                     android:scaleType="centerInside"
                     android:background="@drawable/border"
                     android:padding="10dp"/>
@@ -72,168 +95,113 @@
             </FrameLayout>
         </LinearLayout>
 
-        <!-- Age Title -->
+        <!-- Age Section -->
         <TextView
-            android:id="@+id/txtage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/age"
+            android:text="Age"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:background="@drawable/border"
             android:backgroundTint="#3F51B5"
-            android:padding="10dp"
-            android:layout_marginTop="24dp"/>
+            android:padding="8dp"
+            android:layout_marginTop="16dp"/>
 
-        <!-- Age RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/agerecyclerview"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:overScrollMode="never"/>
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"/>
 
-
-
-        <!-- Weight Title -->
+        <!-- Weight Section -->
         <TextView
-            android:id="@+id/txtweight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Weight"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:background="@drawable/border"
             android:backgroundTint="#3F51B5"
-            android:padding="10dp"
-            android:layout_marginTop="24dp"
+            android:padding="8dp"
+            android:layout_marginTop="16dp"
             android:textAlignment="center"/>
 
-        <!-- KG / Pounds Buttons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_gravity="center"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="8dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="KG"
+                android:textColor="#FFFFFF"
                 android:backgroundTint="#3F51B5"
-                android:layout_marginEnd="24dp"/>
+                android:layout_marginEnd="16dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/pounds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pounds"
+                android:text="Pounds"
+                android:textColor="#FFFFFF"
                 android:backgroundTint="#3F51B5"/>
         </LinearLayout>
 
-        <!-- Weight RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/weightrecyclerview"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
-            android:overScrollMode="never"/>
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"/>
 
-
-        <!-- Selected Age / Weight Display -->
+        <!-- Display Values -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp"
-            android:gravity="center_horizontal">
-
-
-            <LinearLayout
-                android:id="@+id/agell"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Age : "
-                    android:textStyle="bold"
-                    android:textColor="#B8B6B6"
-                    android:textSize="20sp"/>
-
-
-                <TextView
-                    android:id="@+id/agecounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_20"
-                    android:textStyle="bold"
-                    android:textColor="#B8B6B6"
-                    android:textSize="20sp"
-                    android:layout_marginStart="16dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/weightll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="12dp">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Weight : "
-                    android:textStyle="bold"
-                    android:textColor="#B8B6B6"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/weightcounter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/_49"
-                    android:textStyle="bold"
-                    android:textColor="#B8B6B6"
-                    android:textSize="20sp"
-                    android:layout_marginStart="16dp"/>
-            </LinearLayout>
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+            <TextView 
+                android:id="@+id/agecounter" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content" 
+                android:text="Age: 20" 
+                android:textColor="#FFFFFF" 
+                android:textSize="18sp" 
+                android:layout_marginEnd="24dp"/>
+            <TextView 
+                android:id="@+id/weightcounter" 
+                android:layout_width="wrap_content" 
+                android:layout_height="wrap_content" 
+                android:text="Weight: 70" 
+                android:textColor="#FFFFFF" 
+                android:textSize="18sp"/>
         </LinearLayout>
 
-        <!-- NEXT Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/nextheight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/next"
+            android:text="NEXT"
             android:textColor="#FFFFFF"
             android:backgroundTint="#2196F3"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginTop="16dp"/>
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="Logout"
-            android:textSize="12sp"
+            android:textColor="#FFFFFF"
             android:backgroundTint="#FF6B6B"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"/>
+            android:layout_marginTop="16dp"/>
 
     </LinearLayout>
 </ScrollView>
